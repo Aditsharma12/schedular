@@ -2,8 +2,11 @@ name: Daily Random Commits
 
 on:
   schedule:
-    - cron: '30 18 * * *'  # IST midnight
+    - cron: '30 18 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   commit:
@@ -11,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Make random commits
         run: |
-          git config --global user.name "YourName"
-          git config --global user.email "your@email.com"
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
 
           NUM=$(( (RANDOM % 5) + 1 ))
           echo "Making $NUM commits today"
