@@ -1,0 +1,31 @@
+name: Daily Random Commits
+
+on:
+  schedule:
+    - cron: '30 18 * * *'  # IST midnight
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Make random commits
+        run: |
+          git config --global user.name "YourName"
+          git config --global user.email "your@email.com"
+
+          NUM=$(( (RANDOM % 5) + 1 ))
+          echo "Making $NUM commits today"
+
+          for i in $(seq 1 $NUM)
+          do
+            echo "Commit $i on $(date)" >> log.txt
+            git add .
+            git commit -m "Auto commit $i"
+            sleep 2
+          done
+
+          git push
