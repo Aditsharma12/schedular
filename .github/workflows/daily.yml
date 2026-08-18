@@ -18,8 +18,8 @@ jobs:
 
       - name: Make random commits
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.name "Adit Sharma"
+          git config --global user.email "aditsharma2005.vs@gmail.com"
 
           NUM=$(( (RANDOM % 5) + 1 ))
           echo "Making $NUM commits today"
